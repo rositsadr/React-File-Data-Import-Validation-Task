@@ -1,0 +1,4 @@
+Ivan Ivanov, Dunav Ruse, 600, 14
+Marin Marinov, Cherno More Varna, 820, 12
+Stanimir Stoylov, Lukoil Neftohimik, 250, 20
+Hristo Kolev, Dunav Ruse, 60, 18
