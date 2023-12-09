@@ -1,4 +1,8 @@
-function DataTable({data}){
+import { useLocation } from "react-router-dom";
+
+function DataTable(){
+    const location = useLocation();
+    const data = location.state["data"];
     return(
         <>
             <h1>General Statistics</h1>

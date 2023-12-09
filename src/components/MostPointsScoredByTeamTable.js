@@ -1,24 +1,32 @@
 import React from 'react'
-import { useLocation } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 
-function MostPointsScoredTable(){
+function MostPointsScoredByTeamTable() {
     const location = useLocation();
     const data = location.state["data"];
 
-    const sortedData=data.sort((a,b)=>{
-        return b[3]-a[3];
+    const teamsData = data.reduce((prev, next)=>{
+        const [, team, ,points] = next;
+        if(prev[team]){
+            prev[team] = prev[team]+ +points;
+        } else {
+            prev[team] = +points;
+        }
+        return prev;
+    }, {});
+
+    const sortedData=Object.entries(teamsData).sort((a,b)=>{
+        return b[1]-a[1];
     })
 
     return(
         <>
-            <h2>Most Points Scored in a Single Game</h2>
+            <h2>Teams Points Scored Ranking</h2>
             <table>
                 <thead>
                     <tr>
                         <th>Placement</th>
-                        <th>Player name</th>
                         <th>Team</th>
-                        <th>Time played(s)</th>
                         <th>Points scored</th>
                     </tr>
                 </thead>
@@ -29,8 +37,6 @@ function MostPointsScoredTable(){
                                 <td>{index+1}.</td>
                                 <td>{row[0]}</td>
                                 <td>{row[1]}</td>
-                                <td>{row[2]}</td>
-                                <td>{row[3]}</td>
                             </tr>
                         );
                     })}
@@ -40,4 +46,4 @@ function MostPointsScoredTable(){
     );
 }
 
-export default MostPointsScoredTable;
+export default MostPointsScoredByTeamTable;

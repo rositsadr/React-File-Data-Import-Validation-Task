@@ -1,4 +1,9 @@
-function MostPointsScoredByTimePlayedTable({data}){
+import { useLocation } from "react-router-dom";
+
+function MostPointsScoredByTimePlayedTable(){
+    const location = useLocation();
+    const data = location.state["data"];
+    
     const modifiedData=data.map((row)=>{
         const points=row[3];
         const timePlayed=row[2];
@@ -12,10 +17,11 @@ function MostPointsScoredByTimePlayedTable({data}){
 
     return(
         <>
-            <h2>Most Points Scored by Time Played</h2>
+            <h2>Most Points Scored by Time Played in a Single Game</h2>
             <table>
                 <thead>
                     <tr>
+                        <th>Placement</th>
                         <th>Player name</th>
                         <th>Team</th>
                         <th>Time played(s)</th>
