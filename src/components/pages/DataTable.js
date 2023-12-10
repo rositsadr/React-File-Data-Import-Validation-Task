@@ -1,32 +1,30 @@
-import React from 'react'
 import { useLocation } from "react-router-dom";
+import Header from "../atoms/Header";
+import Table from "../organism/Table";
 
-function MostPointsScoredTable(){
+function DataTable(){
     const location = useLocation();
     const data = location.state["data"];
 
-    const sortedData=data.sort((a,b)=>{
-        return b[3]-a[3];
-    })
+    const dataHead = ["Player name","Team","Time played in sec.","Scored Points"];
 
     return(
         <>
-            <h2>Most Points Scored in a Single Game</h2>
-            <table>
+            <Header text="General Table" />
+            <Table dataHead={dataHead} dataBody={data}/>
+            {/* <table>
                 <thead>
                     <tr>
-                        <th>Placement</th>
                         <th>Player name</th>
                         <th>Team</th>
-                        <th>Time played(s)</th>
+                        <th>Time played in sec.</th>
                         <th>Points scored</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {sortedData.map((row, index)=>{
+                    {data.map((row, index)=>{
                         return(
                             <tr key={index}>
-                                <td>{index+1}.</td>
                                 <td>{row[0]}</td>
                                 <td>{row[1]}</td>
                                 <td>{row[2]}</td>
@@ -35,9 +33,10 @@ function MostPointsScoredTable(){
                         );
                     })}
                 </tbody>
-            </table>
+            </table> */}
         </>
+        
     );
 }
 
-export default MostPointsScoredTable;
+export default DataTable;

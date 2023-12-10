@@ -1,23 +1,18 @@
+import React from 'react'
 import { useLocation } from "react-router-dom";
+import Header from '../atoms/Header';
 
-function MostPointsScoredByTimePlayedTable(){
+function MostPointsScoredTable(){
     const location = useLocation();
     const data = location.state["data"];
-    
-    const modifiedData=data.map((row)=>{
-        const points=row[3];
-        const timePlayed=row[2];
-        row.push((points/timePlayed).toFixed(3));
-        return row;
-    });
 
-    const sortedData=modifiedData.sort((a,b)=>{
-        return b[4]-a[4];
-    });
+    const sortedData=data.sort((a,b)=>{
+        return b[3]-a[3];
+    })
 
     return(
         <>
-            <h2>Most Points Scored by Time Played in a Single Game</h2>
+            <Header text="Most Points Scored in a Single Game" />
             <table>
                 <thead>
                     <tr>
@@ -26,7 +21,6 @@ function MostPointsScoredByTimePlayedTable(){
                         <th>Team</th>
                         <th>Time played(s)</th>
                         <th>Points scored</th>
-                        <th>Points scored per second</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -38,7 +32,6 @@ function MostPointsScoredByTimePlayedTable(){
                                 <td>{row[1]}</td>
                                 <td>{row[2]}</td>
                                 <td>{row[3]}</td>
-                                <td>{row[4]}</td>
                             </tr>
                         );
                     })}
@@ -48,4 +41,4 @@ function MostPointsScoredByTimePlayedTable(){
     );
 }
 
-export default MostPointsScoredByTimePlayedTable;
+export default MostPointsScoredTable;

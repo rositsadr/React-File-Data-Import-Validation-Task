@@ -1,5 +1,6 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom';
+import Header from '../atoms/Header';
 
 function MostPointsScoredByTeamTable() {
     const location = useLocation();
@@ -21,7 +22,7 @@ function MostPointsScoredByTeamTable() {
 
     return(
         <>
-            <h2>Teams Points Scored Ranking</h2>
+            <Header text="Teams Points Scored Ranking"/>
             <table>
                 <thead>
                     <tr>

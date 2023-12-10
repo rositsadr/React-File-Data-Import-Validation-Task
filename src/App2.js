@@ -47,7 +47,6 @@ function App() {
     <div className="App">
       <h1>Home Page</h1>
       <NavLink to="/">Home Page</NavLink>
-      <NavLink to="/test-page">Test Page</NavLink>
       <NavLink to={"/overall-table"} state={{data:data}}>
         General Table Page
       </NavLink>
