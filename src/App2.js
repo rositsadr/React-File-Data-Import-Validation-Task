@@ -25,6 +25,8 @@ function App() {
       const dataMatrix = formatArrayToMatrix(dataArr);
       const sanitizedArr = sanitizedArray(dataMatrix);
 
+      console.log(sanitizedArr);
+
       sanitizedArr.forEach((row,index) => {
           if (row.length!==4){
             errors.push(index+1);

@@ -13,8 +13,16 @@ function formatArrayToMatrix(array){
 
 function sanitizedArray(matrix){
     return matrix
-        .map((row)=>row
-            .map((cell)=>cell.trim()));
+        .map((row)=>{
+            row[2]=fromMinutesToSeconds(row[2]);
+            return row.map((cell)=>cell.trim());
+        });
+}
+
+function fromMinutesToSeconds(minutes){
+    const timeArr = minutes.split(":");
+    const seconds = (timeArr[0]*60)+ +timeArr[1];
+    return seconds.toString();
 }
 
 export {
