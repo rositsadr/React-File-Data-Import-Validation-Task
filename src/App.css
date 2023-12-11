@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+
+.App a{
+  margin-right: 10px;
+  text-decoration: none;
+}
+
+#root table,h1{
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 20px;
+}

@@ -25,14 +25,18 @@ function fromMinutesToSeconds(minutes){
     return seconds.toString();
 }
 
-// function addPlacement(data){
-//     return data
-//         .map((entry,index)=>
-//                 return entry.unshift(index+1));
-// }
+function addPlacement(data){
+    return data
+        .map((entry,index)=>
+            {
+                entry.unshift(index+1);
+                return entry;
+        });
+}
 
 export {
     sanitizedArray,
     formatArrayToMatrix,
     splitStringToArray,
+    addPlacement,
 }

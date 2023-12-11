@@ -2,7 +2,7 @@ import React from 'react'
 import { useLocation } from 'react-router-dom';
 import Header from '../atoms/Header';
 import Table from '../organism/Table';
-// import { addPlacement } from '../../utils/dataUtils';
+import { addPlacement } from '../../utils/dataUtils';
 
 function MostPointsScoredByTeamTable() {
     const location = useLocation();
@@ -23,13 +23,7 @@ function MostPointsScoredByTeamTable() {
     });
 
     const dataHead = ["Placement","Team","Scored points"];
-
-    // const dataBody = addPlacement(sortedData);
-    const dataBody = sortedData.map((entry,index)=>
-    {
-        entry.unshift(index+1);
-        return entry;
-    });
+    const dataBody = addPlacement(sortedData);
 
     return(
         <>

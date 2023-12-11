@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App2';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
-import{BrowserRouter,Route, Routes} from 'react-router-dom';
+import{createBrowserRouter,RouterProvider,BrowserRouter,Route, Routes} from 'react-router-dom';
 import MostPointsScoredByTeamTable from './components/pages/MostPointsScoredByTeamTable';
 import MostPointsScoredTable from './components/pages/MostPointsScoredTable';
 import MostPointsScoredByTimePlayedTable from './components/pages/MostPointsScoredByTimePlayedTable';
@@ -14,15 +14,26 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 // /**From the new version of react router */
 // const router = createBrowserRouter([
 //   {
-//   path:"/",
-//   element:<App/>,
+//     path:"/",
+//     element:<App/>,
+  //     path:"/overall-table",
+  //     element:<DataTable/>
+  //   },
+  //   {
+  //     path:"/team-table",
+  //     element:<MostPointsScoredByTeamTable/>
+  //   },
+  //   {
+  //     path:"/points-table",
+  //     element:<MostPointsScoredTable/>
+  //   },
+  //   {
+  //     path:"/time-table",
+  //     element:<MostPointsScoredByTimePlayedTable/>
+  //   },
 //   },
-//   {
-//     path:"/test",
-//     element:<TestPage/>
-//   },
+//   
 // ]);
-
 // root.render(<RouterProvider router={router}/>);
 
 /**Old school, still working */
