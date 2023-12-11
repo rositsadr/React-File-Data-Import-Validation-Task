@@ -1,6 +1,8 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom';
 import Header from '../atoms/Header';
+import Table from '../organism/Table';
+// import { addPlacement } from '../../utils/dataUtils';
 
 function MostPointsScoredByTeamTable() {
     const location = useLocation();
@@ -18,12 +20,22 @@ function MostPointsScoredByTeamTable() {
 
     const sortedData=Object.entries(teamsData).sort((a,b)=>{
         return b[1]-a[1];
-    })
+    });
+
+    const dataHead = ["Placement","Team","Scored points"];
+
+    // const dataBody = addPlacement(sortedData);
+    const dataBody = sortedData.map((entry,index)=>
+    {
+        entry.unshift(index+1);
+        return entry;
+    });
 
     return(
         <>
             <Header text="Teams Points Scored Ranking"/>
-            <table>
+            <Table dataBody={dataBody} dataHead={dataHead}/>
+            {/* <table>
                 <thead>
                     <tr>
                         <th>Placement</th>
@@ -42,7 +54,7 @@ function MostPointsScoredByTeamTable() {
                         );
                     })}
                 </tbody>
-            </table>
+            </table> */}
         </>
     );
 }

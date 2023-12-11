@@ -5,8 +5,7 @@ import Table from "../organism/Table";
 function DataTable(){
     const location = useLocation();
     const data = location.state["data"];
-
-    const dataHead = ["Player name","Team","Time played in sec.","Scored Points"];
+    const dataHead = ["Player name","Team","Time played in seconds","Scored points"];
 
     return(
         <>
