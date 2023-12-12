@@ -26,15 +26,18 @@ function App() {
       const sanitizedArr = sanitizedArray(dataMatrix);
 
       sanitizedArr.forEach((row,index) => {
-          if (row.length!==4){
-            errors.push(index+1);
-          }
+        if (row.length!==4 
+            || isNaN(row[3]) 
+            || isNaN(row[2])){
+          errors.push(index+1);
+        }
       });
 
       if(errors.length){
         errors.forEach((error)=>{
-          console.error(`Data on row ${error} is invalid!`)
-        })
+          alert(`Data on row ${error} is invalid!`);
+        });
+        return;
       }
 
       setData(sanitizedArr);
