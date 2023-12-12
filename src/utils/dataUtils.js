@@ -34,9 +34,37 @@ function addPlacement(data){
         });
 }
 
+function dataExtractor(data){
+    const playerData=[];
+
+    data.forEach((entry)=>{
+        const playerName = entry[0];
+        const playerTeam = entry[1];
+        const playerPoints = entry[3];
+
+        if(playerData.find((player)=>player.name === playerName)){
+            const index= playerData.findIndex((player)=> player.name === playerName);
+            playerData[index].points = +playerData[index].points + +playerPoints;
+        }else{
+            playerData.push({name:playerName,team:playerTeam,points:playerPoints});
+        }       
+    });
+
+    
+    const sortedData = playerData
+    .sort((a,b)=>
+        {
+            return b.points-a.points;
+        }
+    );
+
+    return sortedData;
+}
+
 export {
     sanitizedArray,
     formatArrayToMatrix,
     splitStringToArray,
     addPlacement,
+    dataExtractor
 }

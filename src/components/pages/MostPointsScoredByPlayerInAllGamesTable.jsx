@@ -2,12 +2,12 @@ import React from 'react'
 import { useLocation } from 'react-router-dom';
 import Header from '../atoms/Header';
 import Table from '../organism/Table';
-import { addPlacement } from '../../utils/dataUtils';
+import { addPlacement, dataExtractor } from '../../utils/dataUtils';
 
 function MostPointsScoredByPlayerInAllGamesTable() {
     const location = useLocation();
     const data = location.state["data"];
-    const playerData=[];
+    const extractSortedData=dataExtractor(data);
 
     // const playersData = data.reduce((prev,next)=>{
     //     const[name, , ,points]=next;
@@ -23,29 +23,10 @@ function MostPointsScoredByPlayerInAllGamesTable() {
     //     return b[1]-a[1];
     // });
 
-    data.forEach((entry)=>{
-        const playerName = entry[0];
-        const playerTeam = entry[1];
-        const playerPoints = entry[3];
-
-        if(playerData.find((player)=>player.name === playerName)){
-            const index= playerData.findIndex((player)=> player.name === playerName);
-            playerData[index].points = +playerData[index].points + +playerPoints;
-        }else{
-            playerData.push({name:playerName,team:playerTeam,points:playerPoints});
-        }       
-    });
-
-    const sortedData = playerData
-        .map((player)=>Object.values(player))
-        .sort((a,b)=>
-            {
-                return b[2]-a[2];
-            }
-    );
+    const playerData = extractSortedData.map((player)=>Object.values(player));
 
     const dataHead = ["Placement","Player","Team","Scored points"];
-    const dataBody = addPlacement(sortedData);
+    const dataBody = addPlacement(playerData);
 
     return(
         <>

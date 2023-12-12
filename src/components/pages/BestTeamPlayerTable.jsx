@@ -2,44 +2,23 @@ import React from 'react'
 import { useLocation } from 'react-router-dom';
 import Header from '../atoms/Header';
 import Table from '../organism/Table';
+import { dataExtractor } from '../../utils/dataUtils';
 
 function BestTeamPlayerTable() {
     const location = useLocation();
     const data = location.state["data"];
-    const playerData=[];
+    const extractSortedData=dataExtractor(data);
 
-    data.forEach((entry)=>{
-        const playerName = entry[0];
-        const playerTeam = entry[1];
-        const playerPoints = entry[3];
+    const playerData = [];
 
-        if(playerData.includes((player)=>player.name === playerName)){
-            const index= playerData.findIndex((player)=> player.name === playerName);
-            playerData[index].points = +playerData[index].points + +playerPoints;
-        }else{
-            playerData.push({name:playerName,team:playerTeam,points:playerPoints});
-        }       
+    extractSortedData.forEach((player)=>{
+        if(!playerData.find((pl)=>pl.team===player.team)){
+            playerData.push(player);
+        }
     });
 
-    const someData = [];
-
-    const sortedData = playerData
-    .sort((a,b)=>
-        {
-            return b.points-a.points;
-        }
-    );
-
-    sortedData.forEach((player)=>{
-        if(!someData.find((pl)=>pl.team===player.team)){
-            someData.push(player);
-        }
-    })
-
-console.log(someData);
-
     const dataHead = ["Best Player","Team", "Scored points"];
-    const dataBody = someData.map((player)=>Object.values(player).sort((a,b)=>b[1]-a[1]));
+    const dataBody = playerData.map((player)=>Object.values(player));
 
 
     return(

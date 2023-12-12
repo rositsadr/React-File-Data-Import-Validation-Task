@@ -8,14 +8,11 @@ function MostPointsScoredTable(){
     const location = useLocation();
     const data = location.state["data"];
 
-    const sortedData=data
-        .filter((player,index)=>player[index]!==player[2])
-        .map((pl)=>pl)
-        .sort((a,b)=>{
-        return b[2]-a[2];
+    const sortedData=data.sort((a,b)=>{
+        return b[3]-a[3];
     })
 
-    const dataHead=["Placement", "Player name", "Team", "Time played", "Scored points"];
+    const dataHead=["Placement", "Player name", "Team", "Time played in seconds", "Scored points"];
     const dataBody = addPlacement(sortedData);
 
     return(
