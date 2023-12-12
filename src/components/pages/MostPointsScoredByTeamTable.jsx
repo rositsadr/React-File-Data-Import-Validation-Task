@@ -7,7 +7,7 @@ import { addPlacement } from '../../utils/dataUtils';
 function MostPointsScoredByTeamTable() {
     const location = useLocation();
     const data = location.state["data"];
-
+    
     const teamsData = data.reduce((prev, next)=>{
         const [, team, ,points] = next;
         if(prev[team]){

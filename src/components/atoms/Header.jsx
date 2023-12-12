@@ -1,7 +1,7 @@
 import React from "react";
 
 function Header({text}){
-    return <h1>{text}</h1>
+    return <h2>{text}</h2>
 }
 
 export default Header;

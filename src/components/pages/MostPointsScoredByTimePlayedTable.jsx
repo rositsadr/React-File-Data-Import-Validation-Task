@@ -8,14 +8,15 @@ function MostPointsScoredByTimePlayedTable(){
     const data = location.state["data"];
     
     const modifiedData=data.map((row)=>{
-        const points=row[3];
-        const timePlayed=row[2];
+        const points = row[3];
+        const timePlayed = row[2];
         row.push((points/timePlayed).toFixed(3));
+        row.splice(3,1);
         return row;
     });
 
     const sortedData=modifiedData.sort((a,b)=>{
-        return b[4]-a[4];
+        return b[3]-a[3];
     });
 
     const dataHead=["Placement", "Player name", "Team", "Time played in seconds", "Points scored per second"];

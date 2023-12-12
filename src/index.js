@@ -8,6 +8,8 @@ import MostPointsScoredByTeamTable from './components/pages/MostPointsScoredByTe
 import MostPointsScoredTable from './components/pages/MostPointsScoredTable';
 import MostPointsScoredByTimePlayedTable from './components/pages/MostPointsScoredByTimePlayedTable';
 import DataTable from './components/pages/DataTable';
+import MostPointsScoredByPlayerInAllGamesTable from './components/pages/MostPointsScoredByPlayerInAllGamesTable';
+import BestTeamPlayerTable from './components/pages/BestTeamPlayerTable';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -43,8 +45,10 @@ root.render(
       <Route path="/" element={<App/>}>
         <Route path="/overall-table" element={<DataTable/>}/>
         <Route path="/team-table" element={<MostPointsScoredByTeamTable/>}/>
+        <Route path="/players-table" element={<MostPointsScoredByPlayerInAllGamesTable/>}/>
         <Route path="/points-table" element={<MostPointsScoredTable/>}/>
         <Route path="/time-table" element={<MostPointsScoredByTimePlayedTable/>}/>
+        <Route path="/team-player-table" element={<BestTeamPlayerTable/>}/>
       </Route>
     </Routes>
   </BrowserRouter>

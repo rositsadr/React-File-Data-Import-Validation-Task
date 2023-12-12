@@ -37,7 +37,7 @@ function App() {
         })
       }
 
-      setData(dataMatrix);
+      setData(sanitizedArr);
     };
   }
 
@@ -51,11 +51,17 @@ function App() {
       <NavLink to={"/team-table"} state={{data:data}}>
         Team Table Page
       </NavLink>
+      <NavLink to={"/players-table"} state={{data:data}}>
+        Player Table Page
+      </NavLink>
       <NavLink to={"/points-table"} state={{data:data}}>
         Points Table Page
       </NavLink>
       <NavLink to={"/time-table"} state={{data:data}}>
         Time Table Page
+      </NavLink>     
+      <NavLink to={"/team-player-table"} state={{data:data}}>
+        Teams Best Player Table Page
       </NavLink>     
       <input type="file" onChange={handleFileUpload}/>
       {!!data.length && <Outlet/>}
