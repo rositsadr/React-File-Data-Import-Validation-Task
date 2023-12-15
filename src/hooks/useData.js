@@ -1,10 +1,8 @@
-import React from 'react';
 import { useState } from 'react';
-import { sanitizedArray, formatArrayToMatrix, splitStringToArray } from '../../utils/dataUtils';
-import { NavLink, Outlet } from 'react-router-dom';
-import FileInput from '../atoms/FileInput';
+import { sanitizedArray, formatArrayToMatrix, splitStringToArray } from '../utils/dataUtils';
+import { arrayLengthValidation } from '../utils/validations';
 
-function Navigation() {
+function useData() {
     const[data, setData] = useState([]);
     function handleFileUpload(e){
         e.preventDefault();
@@ -26,14 +24,12 @@ function Navigation() {
           const sanitizedArr = sanitizedArray(dataMatrix);
     
           sanitizedArr.forEach((row,index) => {
-            if (row.length!==4 
+            if (!arrayLengthValidation(row) 
                 || isNaN(row[3]) 
                 || isNaN(row[2])){
               errors.push(index+1);
             }
           });
-    
-          console.log(errors);
     
           if(!!errors.length){
             errors.forEach((error)=>{
@@ -46,32 +42,7 @@ function Navigation() {
           setData(sanitizedArr);
         };
     }
-    return (
-    <>
-    <NavLink to="/">Home Page</NavLink>
-        <NavLink to={"/overall-table"} state={{data:data}}>
-          General Table Page
-        </NavLink>
-        <NavLink to={"/team-table"} state={{data:data}}>
-          Team Table Page
-        </NavLink>
-        <NavLink to={"/players-table"} state={{data:data}}>
-          Player Table Page
-        </NavLink>
-        <NavLink to={"/points-table"} state={{data:data}}>
-          Points Table Page
-        </NavLink>
-        <NavLink to={"/time-table"} state={{data:data}}>
-          Time Table Page
-        </NavLink>     
-        <NavLink to={"/team-player-table"} state={{data:data}}>
-          Teams Best Player Table Page
-        </NavLink>     
-        {/* <input type="file" onChange={handleFileUpload}/> */}
-        <FileInput handleChange={handleFileUpload}/>
-        {!!data.length && <Outlet/>}
-    </>       
-    );
+    return {data, handleFileUpload}
 }
 
-export default Navigation;
+export  {useData};
